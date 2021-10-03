@@ -1,18 +1,13 @@
 package com.codingz2m.paymenttransaction.controllers;
 
-import java.awt.PageAttributes.MediaType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-import javax.validation.Valid;
-
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +31,7 @@ public class PaymentTransactionController {
 		this.paymentTransactionService = paymentTransactionService;
 	}
 	
-	@PostMapping(path ="/{transaction-date}/{transaction-details}/{amount}/{debit-credit}/{savings-account-id}/mutual-fund")
+	@PostMapping(path ="/{transaction-date}/{transaction-details}/{amount}/{debit-credit}/{savings-account-id}")
 	public void initiatePaymentTransaction(
 			@PathVariable(value="transaction-date")String transactionDate, 
 			@PathVariable(value="transaction-details") String transactionDetails,  
@@ -44,6 +39,7 @@ public class PaymentTransactionController {
 			@PathVariable(value="debit-credit") String debitOrCredit,
 			@PathVariable(value="savings-account-id") UUID savingsAccountId
 			) {
+		
 		PaymentTransactionDTO paymentTransactionDTO = new PaymentTransactionDTO();
 		paymentTransactionDTO.setTransactionDate(transactionDate);
 		paymentTransactionDTO.setTransactionDetails(transactionDetails);
@@ -51,7 +47,7 @@ public class PaymentTransactionController {
 		paymentTransactionDTO.setDebitOrCredit(debitOrCredit);
 		paymentTransactionDTO.setSavingsAccountId(savingsAccountId);
 		
-	  PaymentTransaction paymentTransaction = paymentTransactionService.paymentTransaction(paymentTransactionDTO);
+	    paymentTransactionService.paymentTransaction(paymentTransactionDTO);
 	
 	}
 	

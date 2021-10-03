@@ -30,10 +30,8 @@ public class SavingsAccountServiceImpl implements SavingsAccountService {
 	public SavingsAccount createSavingsAccount(SavingsAccountDTO savingsAccountDTO) {
 		 ModelMapper modelMapper = new ModelMapper(); 
 		  modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		  
 		  SavingsAccount savingsAccount = modelMapper.map(savingsAccountDTO, SavingsAccount.class);
-		  savingsAccount.setAnnualPercentageYield(savingsAccountDTO.getAnnualPercentageYield());
-		  savingsAccount.setMinimumBalanceToAvailAPY(savingsAccountDTO.getMinimumBalanceToAvailAPY());
-		  savingsAccount.setMinimumBalanceToOpenAccount(savingsAccountDTO.getMinimumBalanceToOpenAccount());
 		  savingsAccount = savingsAccountRepository.save(savingsAccount);
 		  
 		return savingsAccount;

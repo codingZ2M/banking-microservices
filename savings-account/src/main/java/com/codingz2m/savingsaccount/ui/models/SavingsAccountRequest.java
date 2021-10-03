@@ -31,6 +31,7 @@ public class SavingsAccountRequest {
 		this.minimumBalanceToAvailAPY = 200.00;
 		this.minimumBalanceToOpenAccount = 100.00;
 	}
+	
 	public UUID getId() {
 		return id;
 	}
